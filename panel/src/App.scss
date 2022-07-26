@@ -1,0 +1,108 @@
+@import "./style/variables.scss";
+
+.App {
+    width: 100vw;
+    height: 100%;
+    overflow: hidden;
+}
+
+* {
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.page {
+    overflow-x: hidden;
+    transition: all .2s linear;
+
+    &::-webkit-scrollbar-track {
+        background-color: #fff;
+    }
+
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 9px;
+        background-color: rgba($navBarText, .5);
+
+        &:hover {
+            background-color: rgba($navBarText, .8);
+        }
+    }
+}
+
+.input-container {
+    height: 2rem;
+}
+
+.input-container input,
+.input-container .input-renderer {
+    inset: 0;
+}
+/* For showing through placeholder */
+.input-container input:not([value=""]) {
+    -webkit-text-fill-color: transparent;
+}
+.input-container .input-renderer::-webkit-scrollbar {
+    display: none;
+}
+
+.rs-picker-menu {
+    z-index: 100 !important;
+
+    & > div > div[aria-selected=true] {
+        display: none;
+    }
+}
+
+.rs-table-row-expanded {
+    overflow: auto;
+}
+
+.modal-bg {
+    animation: modal-bg .2s ease;
+}
+
+.modal {
+    animation: modal .2s ease;
+}
+
+.dropdown {
+    animation: modal .2s ease;
+}
+
+.pressArea {
+    &::after {
+        width: 43px;
+        height: 46px;
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: -10px;
+    }
+}
+
+@keyframes modal-bg {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modal {
+    from {
+        opacity: .5;
+        transform: translateY(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

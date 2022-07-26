@@ -1,0 +1,27 @@
+@import './variables.scss';
+
+.sideBar {
+    transition: all .2s linear;
+
+    .btnArea {
+        .btn {
+            transition: color .2s ease;
+        }
+    }
+
+    .sidebarClose {
+        transition: all .2s ease;
+    }
+
+    .call {
+        box-shadow: 0px 0px 40px 1px rgba(#06d7a0, .25);
+        img {
+            width: 28px !important;
+        }
+    }
+    
+
+    .control {
+        color: #f27593;
+    }
+}

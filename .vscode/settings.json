@@ -1,0 +1,6 @@
+{
+  "files.exclude": {
+    "assis-backend/node_modules": true,
+    "assis-backend/dist": true
+  }
+}
