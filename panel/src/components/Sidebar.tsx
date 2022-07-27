@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import useMain from "../hooks/useMain";
-import { useClickOutside } from "../hooks/use-click-outside";
+import useMain from "@hooks/useMain";
+import { useClickOutside } from "@hooks/use-click-outside";
 
 import { AiOutlineFire, AiOutlineCalendar } from "react-icons/ai";
 import { BsPlusLg } from "react-icons/bs";
@@ -19,7 +19,7 @@ import {
   BsFillEmojiDizzyFill,
 } from "react-icons/bs";
 import { MdEmojiFoodBeverage } from "react-icons/md";
-import "../style/sidebar.scss";
+import "@assets/css/sidebar.scss";
 
 import Dropdown from "./Dropdown";
 
@@ -35,18 +35,18 @@ export default function Sidebar() {
   const designModalClickOutsideRef = useClickOutside(
     () => setIsOpenDesignProjectMenu(false),
     ["mouseup", "touchend"]
-  );const newTaskModalClickOutsideRef = useClickOutside(
-    () => setIsOpenNewTaskMenu(false),
+  );const newSnapshotModalClickOutsideRef = useClickOutside(
+    () => setIsOpenNewSnapshotMenu(false),
     ["mouseup", "touchend"]
   );
 
   const [isOpenDesignProjectMenu, setIsOpenDesignProjectMenu] = useState(false);
-  const [isOpenNewTaskMenu, setIsOpenNewTaskMenu] = useState(false);
+  const [isOpenNewSnapshotMenu, setIsOpenNewSnapshotMenu] = useState(false);
 
   return isLogin ? (
     <div
       className={
-        "select-none bg-[#fafafa] sideBar border-l-[1px] border-base-gray p-6 shrink-0 w-full lg:w-96 h-full flex flex-col justify-between absolute xl:relative -right-full xl:right-0 z-20 top-0 " +
+        "select-none bg-flour-white sideBar border-l-[1px] border-base-gray p-6 shrink-0 w-full lg:w-96 h-full flex flex-col justify-between absolute xl:relative -right-full xl:right-0 z-20 top-0 " +
         (sidebarOpen ? "right-0" : "")
       }
       ref={ref}
@@ -221,14 +221,14 @@ export default function Sidebar() {
 
       <div>
         <div className="mb-6 flex flex-row items-center justify-between">
-          <div className="subtitle text-base-text font-bold"> New Task </div>
-          <div className="relative" ref={newTaskModalClickOutsideRef}>
-            <div onClick={() => setIsOpenNewTaskMenu(value => !value)} className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-gray-200 cursor-pointer transition-all duration-2">
+          <div className="subtitle text-base-text font-bold"> New Snapshot </div>
+          <div className="relative" ref={newSnapshotModalClickOutsideRef}>
+            <div onClick={() => setIsOpenNewSnapshotMenu(value => !value)} className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-gray-200 cursor-pointer transition-all duration-2">
               <BiDotsVerticalRounded className="w-6 h-6" />
             </div>
             {
-              isOpenNewTaskMenu &&
-              <Dropdown closeDropdown={() => setIsOpenNewTaskMenu(false)}>
+              isOpenNewSnapshotMenu &&
+              <Dropdown closeDropdown={() => setIsOpenNewSnapshotMenu(false)}>
                 <div className="px-4 py-2 text-xs font-semibold hover:bg-gray-200 transition-all duration-2 cursor-pointer">Option 1</div>
                 <div className="px-4 py-2 text-xs font-semibold hover:bg-gray-200 transition-all duration-2 cursor-pointer">Option 2</div>
                 <div className="px-4 py-2 text-xs font-semibold hover:bg-gray-200 transition-all duration-2 cursor-pointer">Option 3</div>
@@ -238,7 +238,7 @@ export default function Sidebar() {
         </div>
 
         <div className="text-gray-400 text-xs font-semibold mb-2">
-          Task Title
+          Snapshot Title
         </div>
         <input
           className="bg-[#f5f6f8] rounded-lg text-base-text text-sm font-semibold w-full p-3"

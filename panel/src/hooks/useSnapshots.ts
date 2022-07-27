@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { QuestionsContext } from "@context/questions";
+import { SnapshotsContext } from "@context/snapshots";
 
-export default function useQuestions() {
-  const context = useContext(QuestionsContext);
+export default function useSnapshots() {
+  const context = useContext(SnapshotsContext);
 
   if (context === undefined) {
     throw new Error("useSnapshots must be used within a StoreProvider!");

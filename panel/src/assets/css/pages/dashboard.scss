@@ -25,7 +25,7 @@
     }
 }
 
-.monthlyTasks {
+.monthlySnapshots {
     .actionBtn {
         transition: all .2s ease;
 
@@ -59,11 +59,11 @@
         }
     }
 
-    .tasks {
-        .task {
+    .snapshots {
+        .snapshot {
             transition: all .2s ease;
 
-            .taskContent {
+            .snapshotContent {
                 width: calc(100% - 64px);
             }
         }

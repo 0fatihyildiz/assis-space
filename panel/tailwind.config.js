@@ -11,7 +11,8 @@ module.exports = {
         'base-dark': '#a52c48',
         'base-gray': '#e6e6e6',
         'base-text': '#12172d',
-        'second-theme': "#582be6"
+        'second-theme': "#582be6",
+        "flour-white": "#fafafa"
       },
     },
   },

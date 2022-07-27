@@ -1,26 +1,26 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.scss";
+import "@assets/css/App.scss";
 
 // Pages
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import Questions from "./pages/Questions";
-import Lessons from "./pages/Lessons";
-import Users from "./pages/Users";
+import Login from "@pages/Login";
+import Dashboard from "@pages/Dashboard";
+import Questions from "@pages/Questions";
+import Lessons from "@pages/Lessons";
+import Users from "@pages/Users";
 
 // Components
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
+import Header from "@components/Header";
+import Navbar from "@components/Navbar";
+import Sidebar from "@components/Sidebar";
 
 // Contexts
-import { MainProvider } from "./context/main";
-import { NavigationProvider } from "./context/navigation";
-import { TasksProvider } from "./context/tasks";
-import { QuestionsProvider } from "./context/questions";
-import { LessonsProvider } from "./context/lessons";
-import { UsersProvider } from "./context/users";
+import { MainProvider } from "@context/main";
+import { NavigationProvider } from "@context/navigation";
+import { SnapshotsProvider } from "@context/snapshots";
+import { QuestionsProvider } from "@context/questions";
+import { LessonsProvider } from "@context/lessons";
+import { UsersProvider } from "@context/users";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
       <BrowserRouter>
         <MainProvider>
           <NavigationProvider>
-            <TasksProvider>
+            <SnapshotsProvider>
               <Header />
               <Navbar />
               <QuestionsProvider>
@@ -45,7 +45,7 @@ function App() {
                 </LessonsProvider>
               </QuestionsProvider>
               <Sidebar />
-            </TasksProvider>
+            </SnapshotsProvider>
           </NavigationProvider>
         </MainProvider>
       </BrowserRouter>

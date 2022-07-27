@@ -3,7 +3,7 @@ import { useDrag, useDrop, DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Table, Pagination } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
-import "../style/table.scss";
+import "@assets/css/table.scss";
 import TableAction from "./TableAction";
 
 const { HeaderCell, Cell, Column } = Table;

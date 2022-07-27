@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
-import useUsers from "../hooks/useUsers";
+import useUsers from "@hooks/useUsers";
 
-import Modal from "../components/Modal/Modal";
-import Table from "../components/Table";
-import EditItemModal from '../components/Users/EditItemModal';
+import Modal from "@components/Modal/Modal";
+import Table from "@components/Table";
+import EditItemModal from '@components/Users/EditItemModal';
 
 export default function Users() {
   const { data, setData, columns, shownUserProgressColumns } = useUsers();

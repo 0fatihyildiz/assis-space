@@ -1,6 +1,6 @@
 import React from "react";
-import useMain from "../hooks/useMain";
-import "../style/navbar.scss";
+import useMain from "@hooks/useMain";
+import "@assets/css/navbar.scss";
 
 import Account from "./Navbar/Account";
 import Menu from "./Navbar/Menu";
@@ -12,7 +12,7 @@ export default function Navbar() {
   return isLogin ? (
     <div
       className={
-        "navbar bg-[#fafafa] shrink-0 w-full lg:w-72 h-full border-r-[1px] border-base-gray flex flex-col justify-between overflow-auto select-none absolute lg:relative lg:left-0 z-20 top-0 " +
+        "navbar bg-flour-white shrink-0 w-full lg:w-72 h-full border-r-[1px] border-base-gray flex flex-col justify-between overflow-auto select-none absolute lg:relative lg:left-0 z-20 top-0 " +
         (navbarOpen ? "left-0" : "-left-full")
       }
     >

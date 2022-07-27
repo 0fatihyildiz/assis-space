@@ -1,6 +1,19 @@
 {
   "files.exclude": {
     "assis-backend/node_modules": true,
-    "assis-backend/dist": true
+    "assis-backend/dist": true,
+    "backend": true,
+    "app": true,
+    ".vscode": true,
+    "panel/node_modules": true,
+    "panel/craco.config.js": true,
+    "panel/package.json": true,
+    "panel/postcss.config.js": true,
+    "panel/README.md": true,
+    "panel/yarn.lock": true,
+    "panel/.gitignore": true,
+    "panel/src/reportWebVitals.ts": true,
+    "panel/src/react-app-env.d.ts": true,
+    "panel/src/index.tsx": true
   }
 }

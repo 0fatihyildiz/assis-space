@@ -28,7 +28,7 @@ type MainContextType = {
   sidebarOpen: boolean;
   setSidebarOpen: Dispatch<SetStateAction<boolean>>;
   homeCards: {
-    width: number;
+    width: 1 | 2;
     background: string;
     icon: string;
     title: string;

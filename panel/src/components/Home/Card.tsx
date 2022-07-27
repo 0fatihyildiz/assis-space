@@ -1,16 +1,22 @@
-import React from "react";
+import React, { FC } from "react";
 import { HiLightBulb } from "react-icons/hi";
 import { FaKey } from "react-icons/fa";
 
-const icons = {
+export const icons = {
   lightBulb: HiLightBulb,
   key: FaKey,
 };
 
-export default function Cards(props: any) {
-  const { width, background, icon, title } = props.card;
-  // @ts-ignore
-  const IconComponent = icons[icon];
+interface Props {
+  width: 1 | 2;
+  background: string;
+  icon: string;
+  title: string;
+}
+
+const Cards: FC<Props> = function(props) {
+  const { width, background, icon, title } = props;
+  const IconComponent = icons[icon as keyof typeof icons];
 
   return (
     <div
@@ -27,4 +33,6 @@ export default function Cards(props: any) {
       <div className="md:text-base font-semibold"> {title} </div>
     </div>
   );
-}
+};
+
+export default Cards;

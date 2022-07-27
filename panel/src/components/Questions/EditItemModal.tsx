@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { TagPicker } from 'rsuite';
-import useLessons from '../../hooks/useLessons';
+import useLessons from '@hooks/useLessons';
 import Chips from './Chips';
 import Modal from '../Modal/Modal';
 

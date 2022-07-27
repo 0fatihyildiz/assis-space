@@ -1,6 +1,6 @@
 import React from "react";
 import { BiCircle } from "react-icons/bi";
-import useNavigation from "../../hooks/useNavigation";
+import useNavigation from "@hooks/useNavigation";
 
 export default function Favorites() {
   const { favorites } = useNavigation();

@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import useLessons from "../hooks/useLessons";
+import useLessons from "@hooks/useLessons";
 
-import Table from "../components/Table";
-import EditItemModal from '../components/Lessons/EditItemModal';
-import NewItemModal from '../components/Lessons/NewItemModal';
+import Table from "@components/Table";
+import EditItemModal from '@components/Lessons/EditItemModal';
+import NewItemModal from '@components/Lessons/NewItemModal';
 
 export default function Lessons() {
   const { lessons, setLessons, columns } = useLessons();

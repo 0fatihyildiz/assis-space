@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import useQuestions from '../../hooks/useQuestions';
+import useQuestions from '@hooks/useQuestions';
 import Modal from '../Modal/Modal';
 
 export default function Chips(props: any) {

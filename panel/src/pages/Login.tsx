@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useMain from "../hooks/useMain";
+import useMain from "@hooks/useMain";
 
 export default function Login() {
   const { setIsLogin, setUserInfos } = useMain();

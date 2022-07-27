@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import useQuestions from "../hooks/useQuestions";
+import useQuestions from "@hooks/useQuestions";
 
-import Table from "../components/Table";
-import EditItemModal from "../components/Questions/EditItemModal";
-import NewItemModal from "../components/Questions/NewItemModal";
+import Table from "@components/Table";
+import EditItemModal from "@components/Questions/EditItemModal";
+import NewItemModal from "@components/Questions/NewItemModal";
 
 export default function Questions() {
   const { data, setData, columns } = useQuestions();

@@ -1,5 +1,5 @@
 import React from "react";
-import useMain from "../../hooks/useMain";
+import useMain from "@hooks/useMain";
 import { GrClose } from "react-icons/gr";
 
 export default function Account() {

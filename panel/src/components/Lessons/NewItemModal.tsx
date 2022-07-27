@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useCallback, useState } from 'react'
 import { TagPicker } from 'rsuite';
-import useLessons from '../../hooks/useLessons';
-import useQuestions from '../../hooks/useQuestions';
+import useLessons from '@hooks/useLessons';
+import useQuestions from '@hooks/useQuestions';
 import Modal from '../Modal/Modal';
 
 export default function NewItemModal(props: any) {

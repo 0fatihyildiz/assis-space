@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { TagPicker } from 'rsuite';
 import Modal from "../Modal/Modal";
-import useQuestions from '../../hooks/useQuestions';
+import useQuestions from '@hooks/useQuestions';
 
 export default function EditItemModal(props: any) {
   const { data } = useQuestions();

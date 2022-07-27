@@ -1,5 +1,5 @@
 import React from 'react'
-import { useClickOutside } from '../../hooks/use-click-outside';
+import { useClickOutside } from '@hooks/use-click-outside';
 import ModalHeader from './ModalHeader';
 
 export default function EditItemModal(props: any) {

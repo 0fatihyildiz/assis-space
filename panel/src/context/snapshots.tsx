@@ -1,15 +1,15 @@
 import { createContext, FC, ReactNode, useMemo, useState } from "react";
 
-type TasksContextType = {
-  tasks: {
-    activeTasks: {
+type SnapshotsContextType = {
+  snapshots: {
+    activeSnapshots: {
       [key: string]: {
         logo: string,
         title: string,
         description: string
       }[]
     },
-    completedTasks: {
+    lastCompletedLessons: {
       [key: string]: {
         logo: string,
         title: string,
@@ -20,9 +20,9 @@ type TasksContextType = {
   completedPercent: number;
 };
 
-export const TasksContext = createContext<TasksContextType>({
-  tasks: {
-    activeTasks: {
+export const SnapshotsContext = createContext<SnapshotsContextType>({
+  snapshots: {
+    activeSnapshots: {
       today: [
         {
           logo: "https://seeklogo.com/images/U/uber-drive-logo-993E1C334C-seeklogo.com.png",
@@ -50,7 +50,7 @@ export const TasksContext = createContext<TasksContextType>({
         },
       ],
     },
-    completedTasks: {
+    lastCompletedLessons: {
       "Long time ago": [
         {
           logo: "https://yt3.ggpht.com/Oo_iYn0lPlo2HF-WvCMcN4D3j8abIE7C55egplFR5wIaGvP9DYx1iFngaQke7GLJigkRKq1VjhU=s900-c-k-c0x00ffffff-no-rj",
@@ -63,15 +63,15 @@ export const TasksContext = createContext<TasksContextType>({
   completedPercent: 0,
 });
 
-type TasksProviderProps = {
+type SnapshotsProviderProps = {
   children: ReactNode;
 };
 
-export const TasksProvider: FC<TasksProviderProps> = (props) => {
+export const SnapshotsProvider: FC<SnapshotsProviderProps> = (props) => {
   const { children } = props;
 
-  const [tasks] = useState({
-    activeTasks: {
+  const [snapshots] = useState({
+    activeSnapshots: {
       today: [
         {
           logo: "https://seeklogo.com/images/U/uber-drive-logo-993E1C334C-seeklogo.com.png",
@@ -99,7 +99,7 @@ export const TasksProvider: FC<TasksProviderProps> = (props) => {
         },
       ],
     },
-    completedTasks: {
+    lastCompletedLessons: {
       "Long time ago": [
         {
           logo: "https://yt3.ggpht.com/Oo_iYn0lPlo2HF-WvCMcN4D3j8abIE7C55egplFR5wIaGvP9DYx1iFngaQke7GLJigkRKq1VjhU=s900-c-k-c0x00ffffff-no-rj",
@@ -111,36 +111,36 @@ export const TasksProvider: FC<TasksProviderProps> = (props) => {
     },
   });
 
-  let tasksLength: number = 0;
+  let snapshotsLength: number = 0;
   let completedLength: number = 0;
 
-  let activeTasksKeys = Object.keys(tasks.activeTasks);
-  let completedTasksKeys = Object.keys(tasks.completedTasks);
+  let activeSnapshotsKeys = Object.keys(snapshots.activeSnapshots);
+  let lastCompletedLessonsKeys = Object.keys(snapshots.lastCompletedLessons);
 
-  activeTasksKeys.forEach((key) => { 
+  activeSnapshotsKeys.forEach((key) => { 
     // @ts-ignore
-    tasksLength += tasks.activeTasks[key].length
+    snapshotsLength += snapshots.activeSnapshots[key].length
   });
 
-  completedTasksKeys.forEach((key) => {
+  lastCompletedLessonsKeys.forEach((key) => {
     // @ts-ignore
-    completedLength += tasks.completedTasks[key].length
+    completedLength += snapshots.lastCompletedLessons[key].length
   });
 
-  let percent = completedLength / (tasksLength + completedLength) * 100;
+  let percent = completedLength / (snapshotsLength + completedLength) * 100;
 
   const [completedPercent] = useState(percent.toFixed(1));
 
   const value: any = useMemo(
     () => ({
-      tasks,
+      snapshots,
       completedPercent,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [tasks, completedPercent]
+    [snapshots, completedPercent]
   );
 
   return (
-    <TasksContext.Provider value={value}>{children}</TasksContext.Provider>
+    <SnapshotsContext.Provider value={value}>{children}</SnapshotsContext.Provider>
   );
 };

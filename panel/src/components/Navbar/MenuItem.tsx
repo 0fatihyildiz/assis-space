@@ -40,8 +40,8 @@ export default function MenuItem(props: any) {
       </div>
       {notification ? (
         <div className="w-6 h-[21px] flex items-center justify-center rounded-lg rounded-tl-none bg-base-color text-[11px] text-gray-50 font-light pt-px">
-          {" "}
-          {props.item.notification}{" "}
+          
+          {props.item.notification}
         </div>
       ) : null}
     </div>
