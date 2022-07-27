@@ -13,11 +13,11 @@ export default function EditItemModal(props: any) {
   }, [setEditedItem]);
   
   return (
-    <Modal title={`Edit Item - #${editedItem.id}`} btnText="Save Changes" closeModal={() => closeEditItemModal()} saveChanges={() => saveChanges()}>
+    <Modal title={`Kullanıcıyı Düzenle - #${editedItem.id}`} btnText="Kaydet" closeModal={() => closeEditItemModal()} saveChanges={() => saveChanges()}>
       <div className="flex flex-col md:flex-row">
         <div className="flex flex-col md:mr-2">
           <label htmlFor="key" className="text-xs font-semibold mb-2 mt-2 md:mt-0">
-            First Name
+            Ad
           </label>
           <input
             className="w-full md:w-60 rounded-lg border-[1px] border-base-gray p-2"
@@ -32,7 +32,7 @@ export default function EditItemModal(props: any) {
         </div>
         <div className="flex flex-col md:ml-2">
           <label htmlFor="key" className="text-xs font-semibold mb-2 mt-2 md:mt-0">
-            Last Name
+            Soyad
           </label>
           <input
             className="w-full md:w-60 rounded-lg border-[1px] border-base-gray p-2"
@@ -64,7 +64,7 @@ export default function EditItemModal(props: any) {
         </div>
         <div className="flex flex-col md:ml-2">
           <label htmlFor="key" className="text-xs font-semibold mb-2 mt-2 md:mt-0">
-            Display Name
+            Kullanıcı Adı
           </label>
           <input
             className="w-full md:w-60 rounded-lg border-[1px] border-base-gray p-2"
@@ -81,7 +81,7 @@ export default function EditItemModal(props: any) {
       <div className="flex flex-col md:flex-row">
         <div className="flex flex-col md:w-6/12 md:mr-2">
           <label htmlFor="key" className="text-xs font-semibold my-2">
-            Is Verified
+            Doğrulandı
           </label>
           <label 
             onClick={(e) => handleToggleItem('isVerified')}
@@ -93,7 +93,7 @@ export default function EditItemModal(props: any) {
         </div>
         <div className="flex flex-col md:w-6/12 md:ml-2">
           <label htmlFor="key" className="text-xs font-semibold my-2">
-            Is Mod
+            Moderatör
           </label>
           <label 
             onClick={(e) => handleToggleItem('isMod')}
@@ -107,7 +107,7 @@ export default function EditItemModal(props: any) {
       <div className="flex flex-col md:flex-row">
         <div className="flex flex-col md:w-6/12 md:mr-2">
           <label htmlFor="key" className="text-xs font-semibold my-2">
-            Is Banned
+            Banlı
           </label>
           <label 
             onClick={(e) => handleToggleItem('isBanned')}
@@ -119,7 +119,7 @@ export default function EditItemModal(props: any) {
         </div>
         <div className="flex flex-col md:w-6/12 md:ml-2">
           <label htmlFor="key" className="text-xs font-semibold my-2">
-            Display Profile
+            Profili Göster
           </label>
           <label 
             onClick={(e) => handleToggleItem('displayProfile')}

@@ -1,9 +1,10 @@
-import React from "react";
-import useMain from "@hooks/useMain";
 import "@assets/css/navbar.scss";
+import React from "react";
 
-import Account from "./Navbar/Account";
+import useMain from "@hooks/useMain";
+
 import Menu from "./Navbar/Menu";
+import Account from "./Navbar/Account";
 import Favorites from "./Navbar/Favorites";
 
 export default function Navbar() {
@@ -29,7 +30,7 @@ export default function Navbar() {
           rel="noreferrer"
           href="https://www.youtube.com/watch?v=wW9PobBAZOE"
         >
-          2021 Ahmet Eker License
+          {new Date().getFullYear()} Ahmet Eker
         </a>
       </div>
     </div>

@@ -249,21 +249,21 @@ export const UsersProvider: FC<UsersProviderProps> = (props) => {
 
   const [columns] = useState([
     { id: "id", name: "Id", width: 80 },
-    { id: "firstName", name: "First Name", width: 100 },
-    { id: "lastName", name: "Last Name", width: 100 },
-    { id: "email", name: "Email", width: 200 },
-    { id: "displayName", name: "Display Name", width: 120 },
-    { id: "isVerified", name: "Is Verified", width: 100 },
-    { id: "isMod", name: "Is Mod", width: 100 },
-    { id: "isBanned", name: "Is Banned", width: 100 },
-    { id: "displayProfile", name: "Display Profile", width: 120 },
-    { id: "actions", name: "Actions", width: 80, fixed: "right" }
+    { id: "firstName", name: "Ad", width: 100 },
+    { id: "lastName", name: "Soyad", width: 100 },
+    { id: "email", name: "Email", width: 200, flexGrow: 1 },
+    { id: "displayName", name: "Kullanıcı Adı", width: 120 },
+    { id: "isVerified", name: "Doğrulandı", width: 100 },
+    { id: "isMod", name: "Moderatör", width: 100 },
+    { id: "isBanned", name: "Banlı", width: 100 },
+    { id: "displayProfile", name: "Profili Göster", width: 120 },
+    { id: "actions", name: "İşlemler", width: 80, fixed: "right" }
   ]);
   
   const [shownUserProgressColumns] = useState([
     { id: "expand", name: "", width: 36 },
-    { id: "lesson", name: "Lesson Name", flexGrow: 1 },
-    { id: "progressPercent", name: "Progress", fixed: "right", width: 180 }
+    { id: "lesson", name: "Ders Adı", flexGrow: 1 },
+    { id: "progressPercent", name: "İlerleme", fixed: "right", width: 180 }
   ]);
 
   const value: any = useMemo(

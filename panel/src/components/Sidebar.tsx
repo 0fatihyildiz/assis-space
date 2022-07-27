@@ -1,14 +1,17 @@
+import "@assets/css/sidebar.scss";
 import React, { useState } from "react";
+
 import useMain from "@hooks/useMain";
 import { useClickOutside } from "@hooks/use-click-outside";
 
-import { AiOutlineFire, AiOutlineCalendar } from "react-icons/ai";
-import { BsPlusLg } from "react-icons/bs";
-import { BiDotsVerticalRounded } from "react-icons/bi";
-import { ImPhoneHangUp } from "react-icons/im";
 import { GrClose } from "react-icons/gr";
+import { BsPlusLg } from "react-icons/bs";
+import { ImPhoneHangUp } from "react-icons/im";
 import { RiDashboardLine } from "react-icons/ri";
+import { MdEmojiFoodBeverage } from "react-icons/md";
+import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { AiOutlineFire, AiOutlineCalendar } from "react-icons/ai";
 import {
   BsFillEmojiHeartEyesFill,
   BsFillEmojiLaughingFill,
@@ -18,8 +21,6 @@ import {
   BsEmojiExpressionlessFill,
   BsFillEmojiDizzyFill,
 } from "react-icons/bs";
-import { MdEmojiFoodBeverage } from "react-icons/md";
-import "@assets/css/sidebar.scss";
 
 import Dropdown from "./Dropdown";
 
@@ -28,14 +29,15 @@ export default function Sidebar() {
 
   const [activeBtn, setActiveBtn] = useState("calendar");
 
-  const ref = useClickOutside(
+  const pageRef = useClickOutside(
     () => setSidebarOpen(false),
     ["mouseup", "touchend"]
   );
   const designModalClickOutsideRef = useClickOutside(
     () => setIsOpenDesignProjectMenu(false),
     ["mouseup", "touchend"]
-  );const newSnapshotModalClickOutsideRef = useClickOutside(
+  );
+  const newSnapshotModalClickOutsideRef = useClickOutside(
     () => setIsOpenNewSnapshotMenu(false),
     ["mouseup", "touchend"]
   );
@@ -49,29 +51,19 @@ export default function Sidebar() {
         "select-none bg-flour-white sideBar border-l-[1px] border-base-gray p-6 shrink-0 w-full lg:w-96 h-full flex flex-col justify-between absolute xl:relative -right-full xl:right-0 z-20 top-0 " +
         (sidebarOpen ? "right-0" : "")
       }
-      ref={ref}
+      ref={pageRef}
     >
       <div className="flex flex-col">
         <div className="flex flex-row mb-8 justify-between items-center">
           <div className="w-full flex justify-between items-center">
             <div className="text-base-text text-lg font-bold">
-              Today's Scheudle
+              Bügünün Özeti
             </div>
 
             <div className="btnArea bg-slate-100 rounded-full flex items-center justify-center px-2 py-1">
               <div
-                onClick={() => setActiveBtn("dashboard")}
-                className={`btn mr-1 cursor-pointer ${
-                  activeBtn === "dashboard"
-                    ? "text-gray-700"
-                    : "text-gray-400 hover:text-gray-500"
-                }`}
-              >
-                <RiDashboardLine />
-              </div>
-              <div
                 onClick={() => setActiveBtn("calendar")}
-                className={`btn ml-1 cursor-pointer ${
+                className={`btn cursor-pointer ${
                   activeBtn === "calendar"
                     ? "text-gray-700"
                     : "text-gray-400 hover:text-gray-500"
@@ -160,16 +152,22 @@ export default function Sidebar() {
           </div>
 
           <div ref={designModalClickOutsideRef} className="relative">
-            <div onClick={() => setIsOpenDesignProjectMenu(value => !value)} className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-gray-200 transition-all duration-2">
+            <div
+              onClick={() => setIsOpenDesignProjectMenu((value) => !value)}
+              className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-gray-200 transition-all duration-2"
+            >
               <BiDotsVerticalRounded className="w-5 h-5 cursor-pointer" />
             </div>
-            {
-              isOpenDesignProjectMenu &&
+            {isOpenDesignProjectMenu && (
               <Dropdown closeDropdown={() => setIsOpenDesignProjectMenu(false)}>
-                <div className="px-4 py-2 text-xs font-semibold hover:bg-gray-200 transition-all duration-2 cursor-pointer">Option 1</div>
-                <div className="px-4 py-2 text-xs font-semibold hover:bg-gray-200 transition-all duration-2 cursor-pointer">Option 2</div>
+                <div className="px-4 py-2 text-xs font-semibold hover:bg-gray-200 transition-all duration-2 cursor-pointer">
+                  Option 1
+                </div>
+                <div className="px-4 py-2 text-xs font-semibold hover:bg-gray-200 transition-all duration-2 cursor-pointer">
+                  Option 2
+                </div>
               </Dropdown>
-            }
+            )}
           </div>
         </div>
 
@@ -221,19 +219,30 @@ export default function Sidebar() {
 
       <div>
         <div className="mb-6 flex flex-row items-center justify-between">
-          <div className="subtitle text-base-text font-bold"> New Snapshot </div>
+          <div className="subtitle text-base-text font-bold">
+            {" "}
+            New Snapshot{" "}
+          </div>
           <div className="relative" ref={newSnapshotModalClickOutsideRef}>
-            <div onClick={() => setIsOpenNewSnapshotMenu(value => !value)} className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-gray-200 cursor-pointer transition-all duration-2">
+            <div
+              onClick={() => setIsOpenNewSnapshotMenu((value) => !value)}
+              className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-gray-200 cursor-pointer transition-all duration-2"
+            >
               <BiDotsVerticalRounded className="w-6 h-6" />
             </div>
-            {
-              isOpenNewSnapshotMenu &&
+            {isOpenNewSnapshotMenu && (
               <Dropdown closeDropdown={() => setIsOpenNewSnapshotMenu(false)}>
-                <div className="px-4 py-2 text-xs font-semibold hover:bg-gray-200 transition-all duration-2 cursor-pointer">Option 1</div>
-                <div className="px-4 py-2 text-xs font-semibold hover:bg-gray-200 transition-all duration-2 cursor-pointer">Option 2</div>
-                <div className="px-4 py-2 text-xs font-semibold hover:bg-gray-200 transition-all duration-2 cursor-pointer">Option 3</div>
+                <div className="px-4 py-2 text-xs font-semibold hover:bg-gray-200 transition-all duration-2 cursor-pointer">
+                  Option 1
+                </div>
+                <div className="px-4 py-2 text-xs font-semibold hover:bg-gray-200 transition-all duration-2 cursor-pointer">
+                  Option 2
+                </div>
+                <div className="px-4 py-2 text-xs font-semibold hover:bg-gray-200 transition-all duration-2 cursor-pointer">
+                  Option 3
+                </div>
               </Dropdown>
-            }
+            )}
           </div>
         </div>
 

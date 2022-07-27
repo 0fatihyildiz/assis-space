@@ -38,7 +38,7 @@ function DraggableHeaderCell({ children, onDrag, id, ...rest }: any) {
   });
   const isActive = canDrop && isOver;
 
-  if(id !== "actions" && id !== "expand") drag(drop(ref));
+  if (id !== "actions" && id !== "expand") drag(drop(ref));
 
   const styles: {
     padding: string;
@@ -67,12 +67,12 @@ const TableCell = ({ rowData, keyData, ...props }: any) => {
   return (
     <Cell {...props}>
       <div className="flex flex-wrap items-center">
-        {typeof value === "boolean" ? 
+        {typeof value === "boolean" ? (
           <label className="switch">
             <input disabled checked={value} type="checkbox" />
             <span className="slider round"></span>
           </label>
-        : typeof value === "object" ? 
+        ) : typeof value === "object" ? (
           value.map((el: any, i: number) => (
             <div
               key={`tableChip-${i}`}
@@ -90,7 +90,7 @@ const TableCell = ({ rowData, keyData, ...props }: any) => {
               )}
             </div>
           ))
-        : keyData === "progressPercent" ? 
+        ) : keyData === "progressPercent" ? (
           <div className="flex items-center text-xs font-semibold">
             {value}%
             <div className="w-[100px] h-2 ml-2 bg-gray-300 rounded-lg overflow-hidden ">
@@ -100,12 +100,13 @@ const TableCell = ({ rowData, keyData, ...props }: any) => {
               ></div>
             </div>
           </div>
-        : keyData === "id" ?  
+        ) : keyData === "id" ? (
           <div className="max-w-full whitespace-nowrap text-ellipsis overflow-hidden">
-            { value }
+            {value}
           </div>
-        : value
-        }
+        ) : (
+          value
+        )}
       </div>
     </Cell>
   );
