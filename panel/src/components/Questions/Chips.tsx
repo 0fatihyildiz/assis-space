@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import useQuestions from '@hooks/useQuestions';
 import Modal from '../Modal/Modal';
 
@@ -12,22 +12,20 @@ export default function Chips(props: any) {
     value: "",
   });
 
-  const addNewChip = () => {
+  const addNewChip = useCallback(() => {
     if (newChip.key !== "" && newChip.value !== "") {
-      setVariables((chips) => {
-        return [...variables, newChip];
-      });
+      setVariables([...variables, newChip]);
       setOpenAddChip(false);
       setNewChip({ key: "", value: "" });
     }
-  };
+  }, [newChip, setNewChip, setOpenAddChip, variables, setVariables])
   
-  const deleteChip = function(i: number) {
+  const deleteChip = useCallback((i: number) => {
     setVariables((value: any) => {
       let d = value.filter((e: object, index: number) => index !== i);
-      return d
+      return d;
     })
-  }
+  }, [setVariables]);
 
   return (
     <div className="md:max-w-[496px] flex flex-wrap w-full mt-6">
@@ -45,7 +43,7 @@ export default function Chips(props: any) {
               defaultValue={newChip.key}
               autoComplete="off"
               onChange={(e) => setNewChip((chip) => {
-                return { key: e.target.value, value: chip.value };
+                return { ...chip, key: e.target.value };
               })}
             />
             <label htmlFor="key" className="text-xs font-semibold mt-4 mb-2">
@@ -58,7 +56,7 @@ export default function Chips(props: any) {
               defaultValue={newChip.value}
               autoComplete="off"
               onChange={(e) => setNewChip((chip) => {
-                return { key: chip.key, value: e.target.value };
+                return { ...chip, value: e.target.value };
               })}
             />
           </div>

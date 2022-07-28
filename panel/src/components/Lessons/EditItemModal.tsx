@@ -13,33 +13,23 @@ export default function EditItemModal(props: any) {
     value: "",
   });
 
-  const addNewChip = () => {
+  const addNewChip = useCallback(() => {
     if (newChip.key !== "" && newChip.value !== "") {
-      updateEditedItem({
-        id: editedItem.id,
-        name: editedItem.name,
-        randomize: editedItem.randomize,
-        variables: [...editedItem.variables, newChip],
-        private: editedItem.private,
-        questions: editedItem.questions
+      updateEditedItem((item: {[key: string]: any}) => { 
+        return { ...item, variables: [...item.variables, newChip] }
       });
-      setOpenAddChip(false)
+      setOpenAddChip(false);
     }
     setNewChip({ key: "", value: "" });
-  };
+  }, [newChip, updateEditedItem]);
 
-  const deleteVariable = function(i: number) {
+  const deleteVariable = useCallback((i: number) => {
     let d = [...editedItem.variables];
     d.splice(i, 1);
-    updateEditedItem({
-      id: editedItem.id,
-      name: editedItem.name,
-      randomize: editedItem.randomize,
-      variables: [...d],
-      private: editedItem.private,
-      questions: editedItem.questions
+    updateEditedItem((item: {[key: string]: any}) => {
+      return { ...item, variables: [...d] }
     })
-  }
+  }, [editedItem, updateEditedItem]);
 
   const styles = { width: "100%", maxWidth: 496, display: 'block', padding: '4px 8px' };
   const onTagPickerCreate = useCallback((...args: any[]) => {
@@ -64,7 +54,7 @@ export default function EditItemModal(props: any) {
               autoComplete="off"
               onChange={(e) =>
                 setNewChip((chip) => {
-                  return { key: e.target.value, value: chip.value };
+                  return { ...chip, key: e.target.value };
                 })
               }
             />
@@ -79,7 +69,7 @@ export default function EditItemModal(props: any) {
               autoComplete="off"
               onChange={(e) =>
                 setNewChip((chip) => {
-                  return { key: chip.key, value: e.target.value };
+                  return { ...chip, value: e.target.value };
                 })
               }
             />
@@ -99,13 +89,8 @@ export default function EditItemModal(props: any) {
               name="key"
               defaultValue={editedItem.name}
               autoComplete="off"
-              onChange={(e) => updateEditedItem({
-                id: editedItem.id,
-                name: e.target.value,
-                randomize: editedItem.randomize,
-                variables: editedItem.variables,
-                private: editedItem.private,
-                questions: editedItem.questions
+              onChange={(e) => updateEditedItem((item: {[key: string]: any}) => {
+                return { ...item, name: e.target.value }
               })}
             />
           </div>
@@ -116,13 +101,8 @@ export default function EditItemModal(props: any) {
               Randomize
             </label>
             <label 
-              onClick={(e) => updateEditedItem({
-                id: editedItem.id,
-                name: editedItem.name,
-                randomize: !editedItem.randomize,
-                variables: editedItem.variables,
-                private: editedItem.private,
-                questions: editedItem.questions
+              onClick={(e) => updateEditedItem((item: {[key: string]: any}) => {
+                return { ...item, randomize: !item.randomize }
               })}
               className="switch cursor-pointer"
             >
@@ -135,13 +115,8 @@ export default function EditItemModal(props: any) {
               Private
             </label>
             <label 
-              onClick={(e) => updateEditedItem({
-                id: editedItem.id,
-                name: editedItem.name,
-                randomize: editedItem.randomize,
-                variables: editedItem.variables,
-                private: !editedItem.private,
-                questions: editedItem.questions
+              onClick={(e) => updateEditedItem((item: {[key: string]: any}) => {
+                return { ...item, private: !item.private }
               })}
               className="switch cursor-pointer"
             >
@@ -189,13 +164,9 @@ export default function EditItemModal(props: any) {
           <label htmlFor="key" className="text-xs font-semibold mb-2 mt-4 md:mt-0">
             Questions
           </label>
-          <TagPicker onChange={(value) => updateEditedItem({
-              id: editedItem.id,
-              name: editedItem.name,
-              randomize: editedItem.randomize,
-              variables: editedItem.variables,
-              private: editedItem.private,
-              questions: value
+          <TagPicker 
+            onChange={(value) => updateEditedItem((item: {[key: string]: any}) => {
+              return { ...item, questions: value }
             })}
             size="sm" onOpen={onTagPickerCreate} defaultValue={editedItem.questions} data={data} labelKey="question" valueKey="question" style={styles} 
           />

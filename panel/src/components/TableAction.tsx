@@ -1,10 +1,17 @@
-import React from "react";
+import React, { FC } from "react";
 import { Table } from "rsuite";
 
 const { Cell } = Table;
 
-export default function TableAction(props: any) {
+interface Props {
+  rowData: {[key: string]: any},
+  editItem: (arg0: string) => void,
+  removeItem: (arg0: string) => void
+}
+
+const TableAction: FC<Props> = function(props) {
   const { rowData, editItem, removeItem, ...p} = props;
+  
   return (
     <Cell {...p} className="link-group">
       <div className="flex">
@@ -30,3 +37,5 @@ export default function TableAction(props: any) {
     </Cell>
   );
 };
+
+export default TableAction;

@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import useNavigation from "@hooks/useNavigation";
 import useMain from "@hooks/useMain";
-import { useLocation } from "react-router-dom";
 
 import MenuItem from "./MenuItem";
 

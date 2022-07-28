@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import useLessons from "@hooks/useLessons";
 
 import Table from "@components/Table";
@@ -32,12 +32,12 @@ export default function Lessons() {
 
   const [isOpenNewItem, setIsOpenNewItem] = useState(false);
   
-  const openEditItem = function(id: string) {
+  const openEditItem = useCallback((id: string) => {
     setEditedItem(lessons.filter(e => e.id === id)[0]);
     setIsOpenEditItem(true);
-  }
+  }, [lessons]);
 
-  const closeEditItem = function() {
+  const closeEditItem = useCallback(() => {
     setEditedItem({
       id: "",
       name: "",
@@ -50,9 +50,9 @@ export default function Lessons() {
       questions: [""]
     });
     setIsOpenEditItem(false);
-  }
+  }, [setEditedItem]);
 
-  const saveChanges = function() {
+  const saveChanges = useCallback(() => {
     setLessons((data) => {
       let d = data;
       let editedIndex = 0;
@@ -63,18 +63,18 @@ export default function Lessons() {
       return [...d];
     });
     closeEditItem();
-  }
+  }, [closeEditItem, editedItem, setLessons]);
 
-  const removeItem = function(id: number) {
+  const removeItem = useCallback((id: string) => {
     setLessons(data => data.filter((e: any) => e.id !== id));
-  }
+  }, [setLessons]);
 
-  const addNewItem = function(newItem: any) {
+  const addNewItem = useCallback((newItem: any) => {
     if(newItem.name !== "" && newItem.questions.length > 0 && newItem.variables.length > 0) {
       setLessons([...lessons, newItem]);
       setIsOpenNewItem(false);
     }
-  }
+  }, [lessons, setLessons]);
 
   return (
     <div className="page relative flex-1 pb-6 px-6 lg:px-12 pt-20 mt-2 xl:pt-6 xl:mt-0 select-none">
@@ -102,7 +102,7 @@ export default function Lessons() {
 
       <Table 
         data={lessons} columns={columns} hasPage={false} 
-        removeItem={(id: number) => removeItem(id)} 
+        removeItem={(id: string) => removeItem(id)} 
         editItem={(rowDataID: string) => openEditItem(rowDataID)}
       />
 

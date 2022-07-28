@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useCallback, useState } from "react";
 import useQuestions from "@hooks/useQuestions";
 
 import Table from "@components/Table";
@@ -21,12 +21,12 @@ export default function Questions() {
     answers: ['']
   });
 
-  const openEditItem = function(rowDataID: string) {
+  const openEditItem = useCallback((rowDataID: string) => {
     setEditedItem(data.filter(e => e.id === rowDataID)[0]);
     setIsOpenEditItem(true);
-  }
+  }, [data])
 
-  const closeEditItem = function() {
+  const closeEditItem = useCallback(() => {
     setIsOpenEditItem(false);
     setEditedItem({
       id: Math.random().toString(),
@@ -34,9 +34,9 @@ export default function Questions() {
       question: '',
       answers: []
     });
-  }
+  }, [])
 
-  const saveChanges = function() {
+  const saveChanges = useCallback(() => {
     if(editedItem.answers.filter(e => e === "").length === 0) {
       setData((data) => {
         let d = data;
@@ -49,15 +49,15 @@ export default function Questions() {
       });
       closeEditItem();
     }
-  }
+  }, [closeEditItem, editedItem, setData]);
 
-  const removeItem = function(id: number) {
-    setData(data => data.filter((e: any) => e.id !== id));
-  }
+  const removeItem = useCallback((id: string) => {
+    setData(data.filter((e: any) => e.id !== id));
+  }, [data, setData]);
 
   const [isOpenNewItem, setIsOpenNewItem] = useState(false);
 
-  const addNewItem = function(newItem: any) {
+  const addNewItem = useCallback((newItem: any) => {
     if(
       newItem.lesson !== "" && 
       newItem.question !== "" && 
@@ -67,9 +67,9 @@ export default function Questions() {
       setData([...data, newItem]);
       setIsOpenNewItem(false);
     }
-  }
+  }, [data, setData])
   
-  const deleteAnswer = function(i:number) {
+  const deleteAnswer = useCallback((i:number) => {
     let d = editedItem;
     d.answers.splice(i, 1);
     setEditedItem(d);
@@ -82,7 +82,7 @@ export default function Questions() {
       d[editedIndex] = editedItem;
       return [...d];
     });
-  }
+  }, [editedItem, setData]);
 
   return (
     <div className="relative page flex-1 pb-6 px-6 lg:px-12 pt-20 mt-2 xl:pt-6 xl:mt-0 select-none">
@@ -96,11 +96,8 @@ export default function Questions() {
           editedItem={editedItem} 
           updateEditedItem={(item: object) => setEditedItem(item)}
           saveChanges={() => saveChanges()} 
-          addNewAnswer={(newAnswer: string) => setEditedItem({
-            id: editedItem.id,
-            lesson: editedItem.lesson,
-            question: editedItem.question,
-            answers: [...editedItem.answers, newAnswer]
+          addNewAnswer={(newAnswer: string) => setEditedItem((item: {[key: string]: any}) => {
+            return { ...item, answers: [ ...item.answers, newAnswer ] }
           })}
           deleteAnswer={(i: number) => deleteAnswer(i)}
           closeEditItemModal={() => closeEditItem()}
@@ -117,7 +114,7 @@ export default function Questions() {
 
       <Table 
         data={data} columns={columns} hasPage={false} 
-        removeItem={(id: number) => removeItem(id)} 
+        removeItem={(id: string) => removeItem(id)} 
         editItem={(rowDataID: string) => openEditItem(rowDataID)}
       />
 

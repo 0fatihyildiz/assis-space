@@ -39,39 +39,27 @@ export default function NewItemModal(props: any) {
     value: "",
   });
 
-  const addNewChip = () => {
+  const addNewChip = useCallback(() => {
     if (newChip.key !== "" && newChip.value !== "") {
-      setNewItem({
-        id: newItem.id,
-        name: newItem.name,
-        randomize: newItem.randomize,
-        variables: [...newItem.variables, newChip],
-        private: newItem.private,
-        questions: newItem.questions
+      setNewItem((item: {[key: string]: any}) => {
+        return { ...item, variables: [...item.variables, newChip] }
       });
       setOpenAddChip(false)
     }
     setNewChip({ key: "", value: "" });
-  };
+  }, [newChip]);
 
-  const deleteVariable = function(i: number) {
+  const deleteVariable = useCallback((i: number) => {
     let d = [...newItem.variables];
     d.splice(i, 1);
-    setNewItem({
-      id: newItem.id,
-      name: newItem.name,
-      randomize: newItem.randomize,
-      variables: [...d],
-      private: newItem.private,
-      questions: newItem.questions
-    })
-  }
+    setNewItem((item: {[key: string]: any}) => {
+      return { ...item, variables: [...d] }
+    });
+  }, [newItem, setNewItem]);
 
   const handleToggleItem = useCallback((key: string) => {
     setNewItem((item: any) => {
-      let d = Object.assign({}, item);
-      d[key] = !d[key];                
-      return d;
+      return { ...item, [key]: !item[key] }
     });
   }, [setNewItem]);
 
@@ -92,7 +80,7 @@ export default function NewItemModal(props: any) {
               autoComplete="off"
               onChange={(e) =>
                 setNewChip((chip) => {
-                  return { key: e.target.value, value: chip.value };
+                  return { ...chip, key: e.target.value };
                 })
               }
             />
@@ -107,7 +95,7 @@ export default function NewItemModal(props: any) {
               autoComplete="off"
               onChange={(e) =>
                 setNewChip((chip) => {
-                  return { key: chip.key, value: e.target.value };
+                  return { ...chip, value: e.target.value };
                 })
               }
             />
@@ -127,7 +115,7 @@ export default function NewItemModal(props: any) {
               defaultValue={newItem.name}
               autoComplete="off"
               onChange={(e) => setNewItem((item: any) => {     
-                return Object.assign(item, { name: e.target.value });
+                return { ...item, name: e.target.value };
               })}
             />
           </div>
@@ -182,7 +170,6 @@ export default function NewItemModal(props: any) {
 
             <div
               onClick={() => {
-                console.log(newItem)
                 setOpenAddChip(true)
               }}
               className="flex flex-col justify-center rounded-full border-[1px] border-base-gray hover:bg-base-gray px-2.5 py-2 mr-4 mb-2 cursor-pointer"
@@ -201,8 +188,8 @@ export default function NewItemModal(props: any) {
             Questions
           </label>
           <TagPicker 
-            onChange={(value: any) => setNewItem((item: any) => {
-              return Object.assign(item, { questions: value });
+            onChange={(value) => setNewItem((item: {[key: string]: any}) => {
+              return { ...item, questions: value }
             })}
             size="sm" onOpen={onTagPickerCreate} defaultValue={newItem.questions} data={data} labelKey="question" valueKey="question" style={{ width: "100%", maxWidth: 496, display: 'block', padding: '4px 8px' }} 
           />

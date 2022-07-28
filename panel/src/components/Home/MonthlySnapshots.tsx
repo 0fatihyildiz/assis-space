@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BiSearch } from "react-icons/bi";
 
 import Snapshots from "./Snapshots";
 import useSnapshots from "@hooks/useSnapshots";
@@ -19,7 +18,9 @@ const MonthlySnapshot = function () {
 
       <div className="tabs border-b-2 border-base-gray flex flex-col sm:flex-row-reverse justify-between items-stretch">
         <div className="text-gray-400 w-full sm:w-auto m-2 flex flex-row items-center">
-          <BiSearch className="w-5 h-5 text-gray-400 mr-1" />
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
           <input
             className="w-full text-sm sm:w-24 pl-1 p-2"
             type="text"

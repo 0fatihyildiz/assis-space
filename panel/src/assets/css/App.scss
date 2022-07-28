@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "./variables.scss";
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 body, #root {
@@ -33,7 +32,7 @@ body, #root {
     transition: all .2s linear;
 
     &::-webkit-scrollbar-track {
-        background-color: #fff;
+        @apply bg-white;
     }
 
     &::-webkit-scrollbar {
@@ -43,10 +42,10 @@ body, #root {
 
     &::-webkit-scrollbar-thumb {
         border-radius: 9px;
-        background-color: rgba($navBarText, .5);
+        @apply bg-gray-400;
 
         &:hover {
-            background-color: rgba($navBarText, .8);
+            @apply bg-gray-500;
         }
     }
 }

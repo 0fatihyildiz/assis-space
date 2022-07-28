@@ -186,17 +186,17 @@ export default function Users() {
     progress: [],
   });
 
-  const openProgress = function (rowData: any) {
+  const openProgress = useCallback((rowData: any) => {
     setShownUser(rowData);
     setIsOpenProgress(true);
-  };
+  }, []) ;
 
-  const openEditItem = function (id: string) {
+  const openEditItem = useCallback((id: string) => {
     setEditedItem(data.filter((e) => e.id === id)[0]);
     setIsOpenEditItem(true);
-  };
+  }, [data]);
 
-  const closeEditItemModal = function () {
+  const closeEditItemModal = useCallback(() => {
     setEditedItem({
       id: "",
       firstName: "",
@@ -209,9 +209,9 @@ export default function Users() {
       displayProfile: false,
     });
     setIsOpenEditItem(false);
-  };
+  }, []);
 
-  const saveChanges = function () {
+  const saveChanges = useCallback(() => {
     setData((data) => {
       let d = data;
       let editedIndex = 0;
@@ -222,13 +222,13 @@ export default function Users() {
       return [...d];
     });
     closeEditItemModal();
-  };
+  }, [closeEditItemModal, editedItem, setData]);
 
-  const removeItem = function (id: number) {
+  const removeItem = useCallback((id: string) => {
     setData((data) => data.filter((e: any) => e.id !== id));
-  };
+  }, [setData]);
 
-  const closeNewItemModal = function () {
+  const closeNewItemModal = useCallback(() => {
     setNewItem({
       id: data.length + 1 + "",
       firstName: "",
@@ -242,9 +242,9 @@ export default function Users() {
       progress: [],
     });
     setIsOpenNewItem(false);
-  };
+  }, [data]);
 
-  const addNewItem = function () {
+  const addNewItem = useCallback(() => {
     if (
       newItem.firstName !== "" &&
       newItem.lastName !== "" &&
@@ -254,7 +254,7 @@ export default function Users() {
       setData([...data, newItem]);
       closeNewItemModal();
     }
-  };
+  }, [closeNewItemModal, data, newItem, setData]);
 
   const handleToggleItem = useCallback(
     (key: string) => {
@@ -455,7 +455,7 @@ export default function Users() {
         columns={columns}
         hasPage={true}
         handleRowClick={(rowData: object) => openProgress(rowData)}
-        removeItem={(id: number) => removeItem(id)}
+        removeItem={(id: string) => removeItem(id)}
         editItem={(rowDataID: string) => openEditItem(rowDataID)}
       />
 

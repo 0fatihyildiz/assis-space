@@ -4,24 +4,6 @@ import React, { useState } from "react";
 import useMain from "@hooks/useMain";
 import { useClickOutside } from "@hooks/use-click-outside";
 
-import { GrClose } from "react-icons/gr";
-import { BsPlusLg } from "react-icons/bs";
-import { ImPhoneHangUp } from "react-icons/im";
-import { RiDashboardLine } from "react-icons/ri";
-import { MdEmojiFoodBeverage } from "react-icons/md";
-import { BiDotsVerticalRounded } from "react-icons/bi";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { AiOutlineFire, AiOutlineCalendar } from "react-icons/ai";
-import {
-  BsFillEmojiHeartEyesFill,
-  BsFillEmojiLaughingFill,
-  BsFillEmojiSmileFill,
-  BsFillEmojiSunglassesFill,
-  BsFillEmojiWinkFill,
-  BsEmojiExpressionlessFill,
-  BsFillEmojiDizzyFill,
-} from "react-icons/bs";
-
 import Dropdown from "./Dropdown";
 
 export default function Sidebar() {
@@ -69,7 +51,9 @@ export default function Sidebar() {
                     : "text-gray-400 hover:text-gray-500"
                 }`}
               >
-                <AiOutlineCalendar />
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
               </div>
             </div>
           </div>
@@ -83,7 +67,9 @@ export default function Sidebar() {
               setSidebarOpen(false);
             }}
           >
-            <GrClose />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </div>
         </div>
 
@@ -98,7 +84,9 @@ export default function Sidebar() {
           </div>
 
           <div className="transition-all duration-2 text-[#378dfd] hover:bg-[#f0f4fa] text-sm font-semibold rounded-lg px-4 flex flex-row items-center cursor-pointer">
-            <BsPlusLg className="mr-2" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
             Invite
           </div>
         </div>
@@ -136,8 +124,12 @@ export default function Sidebar() {
           </div>
           <div className="text-sm font-semibold"> 28:31 </div>
           <div className="flex flex-row">
-            <ImPhoneHangUp className="hover:text-gray-300 w-6 h-6 cursor-pointer transition-all duration-2" />
-            <BiDotsVerticalRounded className="hover:text-gray-300 ml-2 w-6 h-6 cursor-pointer transition-all duration-2" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="hover:text-gray-300 w-6 h-6 cursor-pointer transition-all duration-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" className="hover:text-gray-300 ml-2 w-6 h-6 cursor-pointer transition-all duration-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+            </svg>
           </div>
         </div>
 
@@ -147,7 +139,10 @@ export default function Sidebar() {
           <div className="flex flex-col">
             <div className="text-base-text font-bold mb-1">Design Project</div>
             <div className="text-gray-400 text-xs font-semibold flex flex-row items-center">
-              <AiOutlineFire className="w-4 h-4 mr-1" /> In Progress
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+              </svg> In Progress
             </div>
           </div>
 
@@ -156,7 +151,9 @@ export default function Sidebar() {
               onClick={() => setIsOpenDesignProjectMenu((value) => !value)}
               className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-gray-200 transition-all duration-2"
             >
-              <BiDotsVerticalRounded className="w-5 h-5 cursor-pointer" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+              </svg>
             </div>
             {isOpenDesignProjectMenu && (
               <Dropdown closeDropdown={() => setIsOpenDesignProjectMenu(false)}>
@@ -228,7 +225,9 @@ export default function Sidebar() {
               onClick={() => setIsOpenNewSnapshotMenu((value) => !value)}
               className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-gray-200 cursor-pointer transition-all duration-2"
             >
-              <BiDotsVerticalRounded className="w-6 h-6" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+              </svg>
             </div>
             {isOpenNewSnapshotMenu && (
               <Dropdown closeDropdown={() => setIsOpenNewSnapshotMenu(false)}>
@@ -254,33 +253,57 @@ export default function Sidebar() {
           type="text"
         />
 
-        <div className="emojis flex flex-row justify-around mt-4">
-          <FaChevronLeft className="control w-5 h-5" />
-          <div className="emoji">
-            <BsFillEmojiHeartEyesFill className="w-5 h-5" />
+        <div className="emojis flex flex-row justify-around items-center mt-4">
+          <div className="w-8 h-8 hover:bg-gray-200 flex items-center justify-center rounded-full cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-base-color" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
           </div>
-          <div className="emoji">
-            <BsFillEmojiLaughingFill className="w-5 h-5" />
+          <div className="text-gray-500 hover:text-gray-600 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
           </div>
-          <div className="emoji">
-            <BsFillEmojiSmileFill className="w-5 h-5" />
+          <div className="text-gray-500 hover:text-gray-600 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
           </div>
-          <div className="emoji">
-            <BsFillEmojiSunglassesFill className="w-5 h-5" />
+          <div className="text-gray-500 hover:text-gray-600 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
           </div>
-          <div className="emoji">
-            <BsFillEmojiWinkFill className="w-5 h-5" />
+          <div className="text-gray-500 hover:text-gray-600 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
           </div>
-          <div className="emoji">
-            <BsEmojiExpressionlessFill className="w-5 h-5" />
+          <div className="text-gray-500 hover:text-gray-600 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
           </div>
-          <div className="emoji">
-            <BsFillEmojiDizzyFill className="w-5 h-5" />
+          <div className="text-gray-500 hover:text-gray-600 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
           </div>
-          <div className="emoji">
-            <MdEmojiFoodBeverage className="w-5 h-5" />
+          <div className="text-gray-500 hover:text-gray-600 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
           </div>
-          <FaChevronRight className="control w-5 h-5" />
+          <div className="text-gray-500 hover:text-gray-600 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div className="w-8 h-8 hover:bg-gray-200 flex items-center justify-center rounded-full cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-base-color" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
         </div>
 
         <hr className="my-6" />
@@ -306,7 +329,9 @@ export default function Sidebar() {
               >
                 Angela
               </span>
-              <GrClose className="w-3 h-3" style={{ color: "#7e5ce4" }} />
+              <svg xmlns="http://www.w3.org/2000/svg" style={{ color: "#7e5ce4" }} className="h-3 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
             </div>
             <div
               className="collabrator flex items-center mr-4 p-1 rounded-full"
@@ -323,16 +348,22 @@ export default function Sidebar() {
               >
                 Chris
               </span>
-              <GrClose className="w-3 h-3" style={{ color: "#48c1a0" }} />
+              <svg xmlns="http://www.w3.org/2000/svg" style={{ color: "#48c1a0" }} className="h-3 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
             </div>
 
             <div className="bg-[#f5f6f8] hover:bg-gray-200 w-8 h-8 rounded-full flex justify-center items-center cursor-pointer">
-              <BsPlusLg className="w-3 h-3" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
             </div>
           </div>
 
           <div className="transition-all duration-2 bg-base-color hover:bg-base-dark w-8 h-8 text-gray-50 rounded-full flex items-center justify-center cursor-pointer">
-            <FaChevronRight />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
           </div>
         </div>
       </div>

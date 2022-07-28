@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useDrag, useDrop, DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Table, Pagination } from "rsuite";
@@ -216,29 +216,48 @@ function sort(source: Array<object>, sourceId: string, targetId: string) {
   return nextData;
 }
 
-export default function DraggableTable(props: any) {
-  const [allData, setAllData] = useState(props.data);
-  const [data, setData] = useState<any[]>([]);
+interface Props {
+  data: object[];
+  columns: object[];
+  rowKey?: string;
+  hasPage?: boolean;
+  renderRowExpanded?: any;
+  handleRowClick?: (arg0: object) => void;
+  editItem?: (arg0: string) => void;
+  removeItem?: (arg0: string) => void;
+}
 
-  const [columns, setColumns] = useState(props.columns);
+const DraggableTable: FC<Props> = function (props) {
+  const {
+    data,
+    columns,
+    rowKey = "id",
+    hasPage,
+    renderRowExpanded,
+    handleRowClick = function (arg0: object){},
+    removeItem = function (arg0: string){},
+    editItem = function (arg0: string){},
+  } = props;
+  const [allData, setAllData] = useState(data);
+  const [tableData, setTableData] = useState<any[]>([]);
+
+  const [tableColumns, setTableColumns] = useState(columns);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
 
-  const rowKey = props.rowKey || "id";
-
   useEffect(() => {
-    setAllData(props.data);
+    setAllData(data);
     const newData = allData.filter((v: object, i: number) => {
       const start = limit * (page - 1);
       const end = start + limit;
       return i >= start && i < end;
     });
-    setData([...newData]);
-  }, [props, allData, limit, page]);
+    setTableData([...newData]);
+  }, [data, allData, limit, page]);
 
   const handleDragColumn = (sourceId: string, targetId: string) => {
     if (sourceId === targetId) return;
-    setColumns(sort(columns, sourceId, targetId));
+    setTableColumns(sort(tableColumns, sourceId, targetId));
   };
 
   const handleChangeLimit = (dataKey: number) => {
@@ -283,19 +302,19 @@ export default function DraggableTable(props: any) {
       <div>
         <Table
           onRowClick={(rowData, e: any) => {
-            if (props.hasPage && e.target.id !== "disableClick") {
-              props.handleRowClick(rowData);
+            if (hasPage && e.target.id !== "disableClick") {
+              handleRowClick(rowData);
             }
           }}
           wordWrap="break-word"
           virtualized
           autoHeight
-          data={data}
+          data={tableData}
           bordered
           rowExpandedHeight={200}
           rowKey={rowKey}
           expandedRowKeys={expandedRowKeys}
-          renderRowExpanded={props.renderRowExpanded}
+          renderRowExpanded={renderRowExpanded}
           renderRow={(children, rowData) => {
             return rowData ? (
               <Row
@@ -311,7 +330,7 @@ export default function DraggableTable(props: any) {
             );
           }}
         >
-          {columns.map((column: any) => (
+          {tableColumns.map((column: any) => (
             <Column
               width={column.width}
               minWidth={column.minWidth}
@@ -325,8 +344,9 @@ export default function DraggableTable(props: any) {
               </DraggableHeaderCell>
               {column.id === "actions" ? (
                 <TableAction
-                  removeItem={(id: number) => props.removeItem(id)}
-                  editItem={(rowDataID: string) => props.editItem(rowDataID)}
+                  rowData={(rowData: {[key: string]: any}) => rowData}
+                  removeItem={(id: string) => removeItem(id)}
+                  editItem={(rowDataID: string) => editItem(rowDataID)}
                 />
               ) : column.id === "expand" ? (
                 <ExpandCell
@@ -362,4 +382,6 @@ export default function DraggableTable(props: any) {
       </div>
     </DndProvider>
   );
-}
+};
+
+export default DraggableTable;

@@ -5,10 +5,8 @@ export default function EditItemModal(props: any) {
   const { editedItem, setEditedItem, closeEditItemModal, saveChanges } = props;
 
   const handleToggleItem = useCallback((key: string) => {
-    setEditedItem((item: any) => {
-      let d = Object.assign({}, item);
-      d[key] = !d[key];                
-      return d;
+    setEditedItem((item: any) => {         
+      return { ...item, [key]: !item[key] };
     });
   }, [setEditedItem]);
   
@@ -26,7 +24,7 @@ export default function EditItemModal(props: any) {
             autoComplete="off"
             defaultValue={editedItem.firstName}
             onChange={(e) => setEditedItem((item: object) => {     
-              return Object.assign(item, { firstName: e.target.value });
+              return { ...item, firstName: e.target.value };
             })}
           />
         </div>
@@ -41,7 +39,7 @@ export default function EditItemModal(props: any) {
             autoComplete="off"
             defaultValue={editedItem.lastName}
             onChange={(e) => setEditedItem((item: object) => {     
-              return Object.assign(item, { lastName: e.target.value });
+              return { ...item, lastName: e.target.value };
             })}
           />
         </div>
@@ -58,7 +56,7 @@ export default function EditItemModal(props: any) {
             autoComplete="off"
             defaultValue={editedItem.email}
             onChange={(e) => setEditedItem((item: object) => {     
-              return Object.assign(item, { email: e.target.value });
+              return { ...item, email: e.target.value };
             })}
           />
         </div>
@@ -73,7 +71,7 @@ export default function EditItemModal(props: any) {
             autoComplete="off"
             defaultValue={editedItem.displayName}
             onChange={(e) => setEditedItem((item: object) => {     
-              return Object.assign(item, { displayName: e.target.value });
+              return { ...item, displayName: e.target.value };
             })}
           />
         </div>

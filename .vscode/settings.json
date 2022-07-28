@@ -15,5 +15,8 @@
     "panel/src/reportWebVitals.ts": true,
     "panel/src/react-app-env.d.ts": true,
     "panel/src/index.tsx": true
-  }
+  },
+  "material-icon-theme.hidesExplorerArrows": false,
+  "editor.hideCursorInOverviewRuler": false,
+  "editor.minimap.autohide": false
 }

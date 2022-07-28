@@ -18,28 +18,22 @@ export default function EditItemModal(props: any) {
   const addAnswer = useCallback(() => {
     let a = editedItem.answers;
     a.push("");
-    updateEditedItem({
-      id: editedItem.id,
-      lesson: editedItem.lesson,
-      question: editedItem.question,
-      answers: [...a]
+    updateEditedItem((item: {[key: string]: any}) => {
+      return { ...item, answers: [...a] }
     });
   }, [editedItem, updateEditedItem]);
 
-  const updateAnswer = function(value: string, i: number) {
+  const updateAnswer = useCallback((value: string, i: number) => {
     let a = [...editedItem.answers];
     a[i] = value;
 
-    updateEditedItem({
-      id: editedItem.id,
-      lesson: editedItem.lesson,
-      question: editedItem.question,
-      answers: [...a]
+    updateEditedItem((item: {[key: string]: any}) => {
+      return { ...item, answers: [...a] }
     });
-  }
+  }, [editedItem, updateEditedItem]);
   const [focusElementID, setFocusElementID] = useState("");
 
-  const addToInput = async (key: string) => {
+  const addToInput = useCallback(async (key: string) => {
     let myInput: any = document.getElementById(focusElementID);
     if(!myInput) return;
     
@@ -73,7 +67,7 @@ export default function EditItemModal(props: any) {
 
       myInput.dispatchEvent(new Event("input", { bubbles: true }))
     }
-  };
+  }, [focusElementID]);
 
   return (
     <Modal title={`Edit Item - #${editedItem.id}`} btnText="Save Changes" closeModal={() => closeEditItemModal()} saveChanges={() => saveChanges()}>
@@ -83,8 +77,8 @@ export default function EditItemModal(props: any) {
             Lesson
           </label>
           <TagPicker onChange={(value) => updateEditedItem((item: any) => {
-            return Object.assign(item, { lesson: value });
-          })} 
+              return { ...item, lesson: value };
+            })} 
             size="sm" onOpen={onTagPickerCreate} defaultValue={editedItem.lesson} data={lessons} labelKey="name" valueKey="name" style={{ width: "100%", maxWidth: 496, display: 'block', padding: '4px 8px' }} 
           />
         </div>
@@ -103,11 +97,8 @@ export default function EditItemModal(props: any) {
               className="w-full absolute z-[1] p-2 text-sm bg-transparent"
               value={editedItem.question}
               autoComplete="off"
-              onChange={(e) => updateEditedItem({
-                id: editedItem.id,
-                lesson: editedItem.lesson,
-                question: e.target.value,
-                answers: editedItem.answers
+              onChange={(e) => updateEditedItem((item: {[key: string]: any}) => {
+                return { ...item, question: e.target.value }
               })}
             ></input>
 

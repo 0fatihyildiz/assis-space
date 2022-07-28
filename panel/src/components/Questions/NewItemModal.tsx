@@ -30,34 +30,25 @@ export default function NewItemModal(props: any) {
   const addAnswer = useCallback(() => {
     let a = newItem.answers;
     a.push("");
-    setNewItem({
-      id: newItem.id,
-      lesson: newItem.lesson,
-      question: newItem.question,
-      answers: [...a]
+    setNewItem((item: {[key: string]: any}) => {
+      return { ...item, answers: [...a] }
     });
   }, [newItem, setNewItem]);
 
-  const updateAnswer = function(value: string, i: number) {
+  const updateAnswer = useCallback((value: string, i: number) => {
     let a = [...newItem.answers];
     a[i] = value;
 
-    setNewItem({
-      id: newItem.id,
-      lesson: newItem.lesson,
-      question: newItem.question,
-      answers: [...a]
+    setNewItem((item: {[key: string]: any}) => {
+      return { ...item, answers: [...a] }
     });
-  }
+  }, [newItem]);
   
   const deleteAnswer = useCallback((i:number) => {
     let d = newItem;
     d.answers.splice(i, 1);
-    setNewItem({
-      id: newItem.id,
-      lesson: newItem.lesson,
-      question: newItem.question,
-      answers: [...d.answers]
+    setNewItem((item: {[key: string]: any}) => {
+      return { ...item, answers: [...d.answers] }
     });
   }, [newItem, setNewItem])
 
@@ -66,7 +57,8 @@ export default function NewItemModal(props: any) {
     el.setAttribute("data-ignore-outside-clicks", "");
   }, []);
 
-  const addToInput = async (key: string) => {
+  const [focusElementID, setFocusElementID] = useState("");
+  const addToInput = useCallback(async (key: string) => {
     let myInput: any = document.getElementById(focusElementID);
     if(!myInput) return;
     
@@ -100,8 +92,7 @@ export default function NewItemModal(props: any) {
 
       myInput.dispatchEvent(new Event("input", { bubbles: true }))
     }
-  };
-  const [focusElementID, setFocusElementID] = useState("");
+  }, [focusElementID]);
 
   return (
     <Modal title="New Question" btnText="Add Question" closeModal={() => closeNewItemModal()} saveChanges={() => addNewItem(newItem)}>
@@ -110,8 +101,8 @@ export default function NewItemModal(props: any) {
           Lesson
         </label>
         <TagPicker onChange={(value) => setNewItem((item: any) => {
-          return Object.assign(item, { lesson: value });
-        })} 
+            return { ...item, lesson: value };
+          })} 
           size="sm" onOpen={onTagPickerCreate} defaultValue={newItem.lesson} data={lessons} labelKey="name" valueKey="name" style={{ width: "100%", maxWidth: 496, display: 'block', padding: '4px 8px' }}
         />
       </div>
@@ -129,11 +120,8 @@ export default function NewItemModal(props: any) {
           className="w-full absolute z-[1] p-2 text-sm bg-transparent"
           value={newItem.question}
           autoComplete="off"
-          onChange={(e) => setNewItem({
-            id: newItem.id,
-            lesson: newItem.lesson,
-            question: e.target.value,
-            answers: newItem.answers
+          onChange={(e) => setNewItem((item: {[key: string]: any}) => {
+            return { ...item, question: e.target.value };
           })}
         ></input>
 

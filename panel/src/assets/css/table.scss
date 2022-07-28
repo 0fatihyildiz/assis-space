@@ -32,9 +32,10 @@
   width: 13px;
   left: 2px;
   bottom: 2px;
-  background-color: white;
   -webkit-transition: .3s;
   transition: .3s;
+
+  @apply bg-white
 }
 
 input:checked + .slider {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import useMain from "@hooks/useMain";
 
 export default function Login() {
@@ -11,7 +11,7 @@ export default function Login() {
     password: ''
   });
 
-  const tryLogin = () => {
+  const tryLogin = useCallback(() => {
     if(loginInfos.username !== '' && loginInfos.password !== '') {
       setIsLogin(true);
       setUserInfos({
@@ -20,7 +20,8 @@ export default function Login() {
         role: 'Admin'
       });
     }
-  }
+  }, [loginInfos, setIsLogin, setUserInfos]);
+  
 
   return (
     <div className="bg-base-gray page flex flex-1 items-center justify-center select-none">

@@ -251,7 +251,7 @@ export const UsersProvider: FC<UsersProviderProps> = (props) => {
     { id: "id", name: "Id", width: 80 },
     { id: "firstName", name: "Ad", width: 100 },
     { id: "lastName", name: "Soyad", width: 100 },
-    { id: "email", name: "Email", width: 200, flexGrow: 1 },
+    { id: "email", name: "Email", minWidth: 200, flexGrow: 1 },
     { id: "displayName", name: "Kullanıcı Adı", width: 120 },
     { id: "isVerified", name: "Doğrulandı", width: 100 },
     { id: "isMod", name: "Moderatör", width: 100 },

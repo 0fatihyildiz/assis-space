@@ -1,5 +1,4 @@
 import React from "react";
-import { BiCircle } from "react-icons/bi";
 import useNavigation from "@hooks/useNavigation";
 
 export default function Favorites() {
@@ -17,7 +16,9 @@ export default function Favorites() {
           className="favoriteItem w-full text-[13px] text-zinc-400 font-semibold hover:bg-gray-100 py-3 px-6 flex flex-row items-center cursor-pointer"
         >
           <div className="flex justify-center items-center">
-            <BiCircle color={item.color} className="w-5 h-5" />
+          <svg className="w-4 h-4" viewBox="0 0 24 24">
+            <path fill={item.color} d ="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+          </svg>
           </div>
           <div className="navText ml-4"> {item.title} </div>
         </div>

@@ -1,5 +1,3 @@
-@import './variables.scss';
-
 .navbar,
 .menuItem,
 .licenseLink,
@@ -10,13 +8,12 @@
 
 .navbar {
     .avatar {
-        box-shadow: 0 15px 30px 7px rgba($baseTheme, .16);
+        box-shadow: 0 15px 30px 7px rgba(#f0476f, .16);
     } 
 
     .menuItem {
         &::before {
             content: "";
-            background: $baseTheme;
             position: absolute;
             top: 50%;
             left: 0;
@@ -25,6 +22,8 @@
             height: calc(100% - 12px);
             border-radius: 0 7px 7px 0;
             transition: transform .4s ease;
+
+            @apply bg-base-color
         }
     
         &[class~="active"]::before {
